@@ -1,0 +1,18 @@
+%% Activity - UC07 Xem cảnh báo kho
+flowchart TD
+    S([Bắt đầu]) --> P1
+    subgraph P1 ["Tính toán"]
+        direction LR
+        A[Chọn Cảnh báo kho] --> B[Tính tồn bán được<br/>từ các lô còn hạn]
+        B --> C[Lọc 4 nhóm cảnh báo]
+    end
+    P1 --> P2
+    subgraph P2 ["Hiển thị"]
+        direction LR
+        G[Hiện 4 chỉ số<br/>tổng hợp] --> H{Nhóm nào<br/>không có dòng?}
+        H -- "Có: hiện Không có ..." --> H1[Hiện các bảng<br/>còn lại]
+        H -- Không --> H1
+    end
+    P2 --> Z([Kết thúc])
+    N1["4 nhóm: tồn từ 20 kg trở xuống; lô còn hạn từ 45 ngày trở xuống;<br/>lô đã hết hạn còn hàng; lô còn từ 1 kg trở xuống chờ chốt"]
+    C -.- N1

@@ -1,0 +1,21 @@
+%% Sequence - UC03 Nhập hàng và chốt lô
+sequenceDiagram
+    actor U as Nhân viên / Chủ
+    participant V as Giao diện (nhap_hang.py)
+    participant DB as CSDL (NhapHang)
+    U->>V: Chọn sản phẩm, ngày nhập, hạn dùng, số kg, bấm Lưu lô nhập
+    V->>V: kiểm tra số kg bội số 0,5 và hạn dùng sau ngày nhập
+    alt Hợp lệ
+        V->>DB: INSERT NhapHang (còn lại = số nhập, giá nhập có thể trống)
+        V-->>U: Đã nhập, hiện lại các lô đang bán
+    else Không hợp lệ
+        V-->>U: Báo lỗi
+    end
+    U->>V: Chọn lô chờ chốt, nhập số kg mẫu thử, bấm Chốt lô
+    V->>DB: SELECT số còn lại của lô
+    alt Mẫu thử không lớn hơn số còn lại
+        V->>DB: UPDATE da_chot, mau_thu, hao_hut, nguoi_chot, ngay_chot
+        V-->>U: Đã chốt: mẫu thử và hao hụt
+    else Mẫu thử lớn hơn
+        V-->>U: Báo lỗi
+    end

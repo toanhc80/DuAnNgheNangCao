@@ -1,0 +1,8 @@
+%% Activity - UC01 Đăng nhập
+flowchart TD
+    S([Bắt đầu]) --> A[Mở trang đăng nhập, nhập tên đăng nhập và mật khẩu]
+    A --> B[Băm mật khẩu và đối chiếu bảng TaiKhoan]
+    B --> C{Đúng tài khoản?}
+    C -- "Không: báo Sai tên đăng nhập hoặc mật khẩu" --> A
+    C -- Có --> D[Lưu người dùng vào phiên, hiện menu theo vai trò]
+    D --> Z([Kết thúc])

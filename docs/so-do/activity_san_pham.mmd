@@ -1,0 +1,25 @@
+%% Activity - UC02 Quản lý sản phẩm
+flowchart TD
+    S([Bắt đầu]) --> P1
+    subgraph P1 ["Xem và tìm (mọi người dùng)"]
+        direction LR
+        A[Chọn Sản phẩm, xem<br/>danh sách kèm tồn] --> B[Tìm theo mã, tên<br/>hoặc lọc nhóm]
+        B --> B2{Có kết quả?}
+        B2 -- "Không: báo không tìm thấy" --> B3([Tiếp tục])
+    end
+    P1 --> P2
+    subgraph P2 ["Thêm hoặc sửa giá (chủ cửa hàng)"]
+        direction LR
+        C{Chủ cửa hàng?} -- Không --> Z1([Kết thúc])
+        C -- Có --> D[Chọn thêm, sửa giá<br/>hoặc xóa]
+        D --> E{Dữ liệu hợp lệ?}
+        E -- "Không: báo lỗi" --> D
+        E -- Có --> H[Lưu thêm hoặc<br/>sửa giá]
+    end
+    P2 --> P3
+    subgraph P3 ["Xóa sản phẩm (chủ cửa hàng)"]
+        direction LR
+        F{Đã có lô nhập<br/>hoặc hóa đơn?} -- "Có: báo không xóa được" --> Z2([Kết thúc])
+        F -- Không --> I[Xóa sản phẩm,<br/>hiện danh sách mới]
+    end
+    P3 --> Z([Kết thúc])

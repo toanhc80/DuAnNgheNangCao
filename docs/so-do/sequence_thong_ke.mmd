@@ -1,0 +1,13 @@
+%% Sequence - UC06 Thống kê
+sequenceDiagram
+    actor U as Chủ cửa hàng
+    participant V as Giao diện (thong_ke.py)
+    participant DB as CSDL
+    U->>V: Chọn Thống kê, chọn năm
+    V->>DB: Doanh thu theo tháng (GROUP BY tháng, chỉ hóa đơn hoàn thành)
+    DB-->>V: tổng theo tháng
+    V->>DB: Top 5 sản phẩm theo số kg
+    V->>DB: Khách mối (HAVING hơn 10 hóa đơn và hơn 30 triệu)
+    V->>DB: Mẫu thử và hao hụt từ các lô đã chốt
+    DB-->>V: các kết quả
+    V-->>U: Biểu đồ cột, bảng top 5, bảng khách mối, bảng mẫu thử và hao hụt

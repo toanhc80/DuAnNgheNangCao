@@ -1,0 +1,24 @@
+%% Activity - UC05 Tra cứu và hủy hóa đơn
+flowchart TD
+    S([Bắt đầu]) --> P1
+    subgraph P1 ["Tra cứu"]
+        direction LR
+        B[Chọn khoảng ngày, khách,<br/>người lập, trạng thái] --> C{Có hóa đơn<br/>khớp?}
+        C -- "Không: báo không có hóa đơn" --> E1([Kết thúc])
+        C -- Có --> D[Hiện danh sách,<br/>xem chi tiết]
+    end
+    P1 --> P2
+    subgraph P2 ["Hủy hóa đơn (chủ cửa hàng)"]
+        direction LR
+        F{Chủ cửa hàng và<br/>hóa đơn chưa hủy?} -- Không --> E2([Kết thúc])
+        F -- Có --> G[Nhập lý do hủy]
+        G --> H{Có lý do?}
+        H -- "Không: báo phải ghi lý do" --> G
+    end
+    P2 --> P3
+    subgraph P3 ["Hoàn hàng"]
+        direction LR
+        I{Có hàng từ<br/>lô đã chốt?} -- "Có: báo không hủy được" --> E3([Kết thúc])
+        I -- Không --> J[Hoàn số kg về đúng lô,<br/>đổi sang đã hủy]
+    end
+    P3 --> Z([Kết thúc])

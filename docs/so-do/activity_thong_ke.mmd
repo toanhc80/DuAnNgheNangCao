@@ -1,0 +1,8 @@
+%% Activity - UC06 Thống kê
+flowchart TD
+    S([Bắt đầu]) --> A[Chủ cửa hàng chọn Thống kê và chọn năm]
+    A --> C{Năm có hóa đơn hoàn thành?}
+    C -- "Không: báo năm chưa có hóa đơn" --> D
+    C -- Có --> C2[Hiện doanh thu theo tháng, top 5 sản phẩm, khách mối]
+    C2 --> D[Hiện mẫu thử tích lũy và tỷ lệ hao hụt theo sản phẩm]
+    D --> Z([Kết thúc])

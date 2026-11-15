@@ -1,0 +1,19 @@
+%% Sequence - UC01 Đăng nhập
+sequenceDiagram
+    actor U as Người dùng
+    participant V as Giao diện (app.py)
+    participant A as auth.py
+    participant DB as CSDL (TaiKhoan)
+    U->>V: Nhập tên đăng nhập, mật khẩu, bấm Đăng nhập
+    V->>A: kiem_tra_dang_nhap(ten, mat_khau)
+    A->>A: hash_password(mat_khau) bằng SHA-256
+    A->>DB: SELECT ... WHERE ten_dang_nhap và mat_khau_hash
+    DB-->>A: 0 hoặc 1 dòng
+    alt Đúng tài khoản
+        A-->>V: thông tin người dùng
+        V->>V: lưu vào session_state, dựng menu theo vai trò
+        V-->>U: Trang chính
+    else Sai
+        A-->>V: None
+        V-->>U: Báo "Sai tên đăng nhập hoặc mật khẩu"
+    end

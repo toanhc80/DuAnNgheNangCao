@@ -1,0 +1,25 @@
+%% Sequence - UC08 Quản lý khách hàng
+sequenceDiagram
+    actor U as Chủ cửa hàng
+    participant V as Giao diện (khach_hang.py)
+    participant DB as CSDL
+    U->>V: Chọn Khách hàng
+    V->>DB: SELECT KhachHang LEFT JOIN HoaDon (số hóa đơn, tổng mua trong năm)
+    DB-->>V: danh sách khách
+    V-->>U: Bảng khách, nhãn khách mối
+    U->>V: Nhập họ tên, số điện thoại, địa chỉ, loại, bấm Thêm khách
+    V->>V: kiểm tra có họ tên, số điện thoại 10 chữ số
+    V->>DB: SELECT số điện thoại đã có?
+    alt Hợp lệ và không trùng
+        V->>DB: INSERT KhachHang
+        V-->>U: Đã thêm khách
+    else Sai hoặc trùng
+        V-->>U: Báo lỗi
+    end
+    U->>V: Chọn khách, bấm Xóa khách này
+    V->>DB: SELECT COUNT hóa đơn của khách
+    alt Chưa có hóa đơn
+        V->>DB: DELETE KhachHang
+    else Đã có hóa đơn
+        V-->>U: Báo không xóa được
+    end

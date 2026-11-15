@@ -1,0 +1,18 @@
+%% Activity - UC03 Nhập hàng và chốt lô
+flowchart TD
+    S([Bắt đầu]) --> B{Nhập hàng hay chốt lô?}
+    B -- Nhập hàng --> C[Chọn sản phẩm, ngày nhập, hạn dùng, số kg]
+    C --> D{Số kg và hạn dùng hợp lệ?}
+    D -- "Không: báo lỗi" --> C
+    D -- Có --> F[Tạo lô mới, còn lại bằng số nhập]
+    F --> Z([Kết thúc])
+    B -- Chốt lô --> G[Chọn lô còn từ 1 kg trở xuống hoặc đã hết hạn]
+    G --> H{Lô đã hết hạn?}
+    H -- Có --> L[Ghi toàn bộ số còn lại là hàng bỏ]
+    H -- Không --> I[Nhập số kg mẫu thử]
+    I --> J{Mẫu thử không lớn hơn số còn lại?}
+    J -- "Không: báo lỗi" --> I
+    J -- Có --> K[Hao hụt bằng số còn lại trừ mẫu thử]
+    K --> M[Đóng lô, ghi người chốt và ngày chốt]
+    L --> M
+    M --> Z

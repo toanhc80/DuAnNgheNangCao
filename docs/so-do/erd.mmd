@@ -1,0 +1,66 @@
+%% ERD - CSDL cửa hàng Hằng Trần
+erDiagram
+    TaiKhoan ||--o{ NhapHang : "nhập, chốt"
+    TaiKhoan ||--o{ HoaDon : "lập, hủy"
+    KhachHang ||--o{ HoaDon : "mua"
+    SanPham ||--o{ NhapHang : "có lô"
+    SanPham ||--o{ ChiTietHoaDon : "được bán"
+    NhapHang ||--o{ ChiTietHoaDon : "xuất từ lô"
+    HoaDon ||--|{ ChiTietHoaDon : "gồm"
+    TaiKhoan {
+        int id PK
+        text ten_dang_nhap UK
+        text mat_khau_hash
+        text ho_ten
+        text vai_tro
+    }
+    KhachHang {
+        int id PK
+        text ho_ten
+        text so_dien_thoai UK
+        text dia_chi
+        text loai
+    }
+    SanPham {
+        int id PK
+        text ma UK
+        text ten
+        text nhom
+        int gia_ban
+    }
+    NhapHang {
+        int id PK
+        int san_pham_id FK
+        text ngay_nhap
+        text han_dung
+        real so_luong_nhap
+        real so_luong_con_lai
+        int gia_nhap
+        text trang_thai
+        real mau_thu
+        real hao_hut
+        text ly_do_chot
+        int nguoi_nhap_id FK
+        int nguoi_chot_id FK
+    }
+    HoaDon {
+        int id PK
+        text ngay_lap
+        int khach_hang_id FK
+        text kenh
+        text thanh_toan
+        int nguoi_lap_id FK
+        int tong_tien
+        text trang_thai
+        text ly_do_huy
+    }
+    ChiTietHoaDon {
+        int id PK
+        int hoa_don_id FK
+        int san_pham_id FK
+        int nhap_hang_id FK
+        real so_luong
+        int don_gia
+        int giam_gia
+        int thanh_tien
+    }

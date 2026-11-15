@@ -1,0 +1,15 @@
+%% Activity - UC08 Quản lý khách hàng
+flowchart TD
+    S([Bắt đầu]) --> A[Chủ cửa hàng chọn Khách hàng, xem danh sách và nhãn khách mối]
+    A --> C{Thao tác nào?}
+    C -- Tìm hoặc xem lịch sử --> C1[Lọc theo tên, số điện thoại, loại khách hoặc xem hóa đơn của khách]
+    C1 --> Z([Kết thúc])
+    C -- Thêm hoặc sửa --> D[Nhập họ tên, số điện thoại, địa chỉ, loại khách]
+    D --> E{Hợp lệ và không trùng số điện thoại?}
+    E -- "Không: báo lỗi" --> D
+    E -- Có --> F[Lưu khách]
+    F --> Z
+    C -- Xóa --> G{Khách đã có hóa đơn?}
+    G -- "Có: báo không xóa được" --> Z
+    G -- Không --> H[Xóa khách]
+    H --> Z

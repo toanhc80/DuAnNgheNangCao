@@ -1,0 +1,24 @@
+%% Sequence - UC04 Lập hóa đơn
+sequenceDiagram
+    actor U as Nhân viên
+    participant V as Giao diện (lap_hoa_don.py)
+    participant K as kho.py
+    participant DB as CSDL
+    U->>V: Nhập số điện thoại khách
+    V->>DB: SELECT KhachHang theo số điện thoại
+    DB-->>V: khách (loại lẻ/sỉ) hoặc rỗng
+    V-->>U: Tên và nhãn khách, hoặc hỏi họ tên khách mới
+    loop Mỗi sản phẩm
+        U->>V: Chọn sản phẩm, số kg, bấm Thêm vào hóa đơn
+        V->>V: kiểm tra bội số 0,5 và không vượt tồn bán được
+        V-->>U: Dòng hóa đơn (giảm 5% nếu khách sỉ từ 10 kg)
+    end
+    U->>V: Chọn kênh, thanh toán, bấm Lưu hóa đơn
+    V->>DB: BEGIN (giao_dich)
+    V->>DB: INSERT HoaDon (và KhachHang nếu khách mới)
+    V->>K: cap_phat(conn, san_pham_id, so_kg)
+    K->>DB: SELECT lô còn hạn ORDER BY han_dung
+    K-->>V: danh sách (lô, kg)
+    V->>DB: INSERT ChiTietHoaDon, UPDATE NhapHang trừ còn lại
+    V->>DB: UPDATE HoaDon.tong_tien, COMMIT
+    V-->>U: Đã lưu hóa đơn số ..., tổng ... VNĐ

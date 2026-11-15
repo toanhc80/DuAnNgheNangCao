@@ -1,0 +1,47 @@
+' Use Case - Hệ thống quản lý cửa hàng đặc sản khô Hằng Trần
+' Mở https://www.plantuml.com/plantuml, dán toàn bộ nội dung file này để xem và sửa
+@startuml
+left to right direction
+skinparam actorStyle awesome
+skinparam shadowing false
+skinparam dpi 220
+skinparam defaultFontName Times New Roman
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+}
+skinparam rectangle {
+  BackgroundColor #FFFFFF
+  BorderColor #000000
+}
+
+actor "Nhân viên bán hàng" as NV
+actor "Chủ cửa hàng" as CT
+CT -|> NV : kế thừa
+
+rectangle "Hệ thống quản lý cửa hàng đặc sản khô Hằng Trần" {
+  usecase "UC01 Đăng nhập" as UC1
+  usecase "UC02 Quản lý sản phẩm" as UC2
+  usecase "UC03 Nhập hàng và chốt lô" as UC3
+  usecase "UC04 Lập hóa đơn" as UC4
+  usecase "UC05 Tra cứu hóa đơn" as UC5
+  usecase "UC06 Thống kê" as UC6
+  usecase "UC07 Xem cảnh báo kho" as UC7
+  usecase "UC08 Quản lý khách hàng" as UC8
+  usecase "Hủy hóa đơn" as X1
+  usecase "Cập nhật giá nhập" as X2
+}
+
+NV --> UC1
+NV --> UC2
+NV --> UC3
+NV --> UC4
+NV --> UC5
+NV --> UC7
+CT --> UC6
+CT --> UC8
+X1 .> UC5 : <<extend>>
+X2 .> UC3 : <<extend>>
+CT --> X1
+CT --> X2
+@enduml

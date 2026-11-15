@@ -1,0 +1,21 @@
+%% Sequence - UC02 Quản lý sản phẩm
+sequenceDiagram
+    actor U as Chủ cửa hàng
+    participant V as Giao diện (san_pham.py)
+    participant K as kho.py
+    participant DB as CSDL
+    U->>V: Chọn Sản phẩm
+    V->>K: ton_ban_duoc()
+    K->>DB: SELECT SanPham LEFT JOIN NhapHang
+    DB-->>K: danh sách và tồn bán được
+    K-->>V: DataFrame
+    V-->>U: Bảng sản phẩm (giá VNĐ, tồn kg)
+    U->>V: Nhập mã, tên, nhóm, giá, bấm Thêm
+    V->>V: kiểm tra đủ thông tin, giá bội số 1.000
+    V->>DB: SELECT mã đã tồn tại?
+    alt Hợp lệ và mã chưa có
+        V->>DB: INSERT INTO SanPham
+        V-->>U: Thông báo đã thêm, tải lại bảng
+    else Không hợp lệ hoặc trùng mã
+        V-->>U: Báo lỗi
+    end

@@ -1,0 +1,33 @@
+<!doctype html><html lang='vi'><meta charset='utf-8'><style>
+body{margin:0;font-family:'Liberation Serif','Times New Roman',serif;font-size:15px;color:#111;background:#fff}
+.wrap{display:flex;min-height:560px;border:1px solid #333;width:1060px}
+.side{width:210px;background:#f2f2f2;border-right:1px solid #333;padding:16px}
+.side .u{font-weight:bold}.side .r{color:#444;margin-bottom:14px}
+.side div.m{padding:4px 0}.side div.on{font-weight:bold}.side div.on:before{content:'\25CF  '}.side div.m:not(.on):before{content:'\25CB  '}
+.side .btn{margin-top:14px}
+.main{flex:1;padding:18px 26px}
+h1{font-size:26px;margin:0 0 12px}h2{font-size:19px;margin:16px 0 8px}
+label{display:block;font-size:13px;color:#333;margin-top:8px}
+.in{border:1px solid #555;height:26px;padding:3px 8px;background:#fff;line-height:26px}
+.btn{display:inline-block;border:1px solid #333;padding:4px 14px;background:#e6e6e6;margin-top:8px}
+.btn.p{background:#222;color:#fff}
+table{border-collapse:collapse;width:100%;margin-top:6px;font-size:14px}
+th,td{border:1px solid #777;padding:4px 8px;text-align:left}th{background:#e9e9e9}
+.row{display:flex;gap:14px}.row>*{flex:1}
+.box{border:1px solid #333;padding:8px 12px}
+.tabs span{display:inline-block;padding:4px 14px;border:1px solid #333;border-bottom:none;margin-right:4px}.tabs .on{font-weight:bold;background:#e9e9e9}
+.metric{border:1px solid #333;padding:6px 10px}.metric b{font-size:26px;display:block}
+.note{font-size:12px;color:#555;margin-top:8px}
+.ok{border:1px solid #333;background:#f0f0f0;padding:8px 12px;margin:8px 0}
+.bars{display:flex;align-items:flex-end;gap:10px;height:150px;border-left:1px solid #333;border-bottom:1px solid #333;padding:0 8px}
+.bars i{display:block;width:34px;background:#555}
+</style><body>
+<div class='wrap'><div class='side'><div class='u'>Chị Hằng</div><div class='r'>Chủ cửa hàng</div><div class='m on'>Lập hóa đơn</div><div class='m'>Tra cứu hóa đơn</div><div class='m'>Sản phẩm</div><div class='m'>Nhập hàng và chốt lô</div><div class='m'>Cảnh báo kho</div><div class='m'>Khách hàng</div><div class='m'>Thống kê</div><div class='btn'>Đăng xuất</div></div>
+<div class='main'><h1>Lập hóa đơn</h1>
+<h2>1. Khách hàng</h2><label>Số điện thoại khách (bỏ trống nếu khách không cho)</label><div class='in'>0901000002</div><div class='ok'>Lê Thị Bích – Khách sỉ – Khách mối</div>
+<h2>2. Hàng bán</h2><div class='row'><div style='flex:3'><div class='in'>SP06 – Tôm khô Cà Mau (còn 27 kg, 1.400.000 VNĐ/kg)</div></div><div class='in'>12</div><div class='btn' style='flex:1.2;margin:0'>Thêm vào hóa đơn</div></div>
+<table><tr><th>Sản phẩm</th><th>Số kg</th><th>Đơn giá 1 kg</th><th>Giảm</th><th>Thành tiền</th></tr>
+<tr><td>Tôm khô Cà Mau</td><td>12 kg</td><td>1.400.000 VNĐ</td><td>5%</td><td>15.960.000 VNĐ</td></tr>
+<tr><td>Mắm tôm</td><td>3 kg</td><td>180.000 VNĐ</td><td>0%</td><td>540.000 VNĐ</td></tr></table>
+<div style='margin-top:8px'>Tổng tiền: <b style='font-size:24px'>16.500.000 VNĐ</b></div>
+<h2>3. Kênh bán và thanh toán</h2><div class='row'><div class='in'>Online</div><div class='in'>Chuyển khoản</div><div class='in'>Địa chỉ giao: Cần Thơ</div></div><div class='btn p'>Lưu hóa đơn</div><div class='note'>Dữ liệu chỉ để minh họa</div></div></div></body></html>

@@ -1,0 +1,29 @@
+%% Activity - UC04 Lập hóa đơn
+flowchart TD
+    S([Bắt đầu]) --> P1
+    subgraph P1 ["Bước 1: Chọn khách"]
+        direction LR
+        A[Nhập số điện thoại<br/>hoặc để trống] --> C{Đúng 10 chữ số<br/>hoặc để trống?}
+        C -- "Không: báo lỗi" --> A
+        C -- Có --> D[Khách lẻ, khách cũ<br/>hoặc nhập tên khách mới]
+    end
+    P1 --> P2
+    subgraph P2 ["Bước 2: Chọn hàng"]
+        direction LR
+        E[Chọn sản phẩm<br/>và số kg] --> F{Bội số 0,5 và<br/>không vượt tồn?}
+        F -- "Không: báo lỗi" --> E
+        F -- Có --> H[Thêm vào hóa đơn<br/>khách sỉ từ 10 kg: giảm 5%]
+    end
+    P2 --> P3
+    subgraph P3 ["Bước 3: Thêm hàng hoặc kết thúc chọn"]
+        direction LR
+        J{Thêm sản phẩm<br/>khác?} -- Có --> J1([Quay lại Bước 2])
+        J -- Không --> K[Chọn kênh bán, thanh toán,<br/>địa chỉ nếu đơn online]
+    end
+    P3 --> P4
+    subgraph P4 ["Bước 4: Lưu hóa đơn"]
+        direction LR
+        L{Đủ thông tin?} -- "Không: báo thiếu" --> L1([Quay lại Bước 3])
+        L -- Có --> M[Chia số kg vào các lô gần hết hạn trước,<br/>ghi hóa đơn, trừ tồn, báo số hóa đơn]
+    end
+    P4 --> Z([Kết thúc])

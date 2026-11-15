@@ -1,0 +1,16 @@
+%% Sequence - UC07 Xem cảnh báo kho
+sequenceDiagram
+    actor U as Nhân viên / Chủ
+    participant V as Giao diện (canh_bao.py)
+    participant K as kho.py
+    participant DB as CSDL
+    U->>V: Chọn Cảnh báo kho
+    V->>K: ton_ban_duoc()
+    K->>DB: SUM(còn lại - 1 kg) các lô đang bán còn hạn
+    DB-->>K: tồn từng sản phẩm
+    K-->>V: DataFrame, lọc tồn từ 20 kg trở xuống
+    V->>DB: Lô còn hạn từ 45 ngày trở xuống
+    V->>DB: Lô đã hết hạn còn hàng
+    V->>DB: Lô còn từ 1 kg trở xuống
+    DB-->>V: ba danh sách lô
+    V-->>U: 4 chỉ số và 4 bảng cảnh báo

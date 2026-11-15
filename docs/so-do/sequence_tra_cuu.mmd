@@ -1,0 +1,21 @@
+%% Sequence - UC05 Tra cứu và hủy hóa đơn
+sequenceDiagram
+    actor U as Nhân viên / Chủ
+    participant V as Giao diện (tra_cuu.py)
+    participant DB as CSDL
+    U->>V: Chọn khoảng ngày, khách, trạng thái
+    V->>DB: SELECT HoaDon JOIN KhachHang JOIN TaiKhoan (nhân viên: chỉ của mình)
+    DB-->>V: danh sách hóa đơn
+    V-->>U: Bảng hóa đơn
+    U->>V: Chọn một hóa đơn
+    V->>DB: SELECT ChiTietHoaDon JOIN SanPham
+    V-->>U: Chi tiết (sản phẩm, lô, kg, giá, giảm, thành tiền)
+    U->>V: (Chủ) nhập lý do, bấm Hủy hóa đơn
+    V->>DB: BEGIN, kiểm tra trạng thái và các lô
+    alt Còn hoàn thành và lô chưa chốt
+        V->>DB: UPDATE NhapHang cộng lại số kg
+        V->>DB: UPDATE HoaDon da_huy, ly_do, nguoi_huy, ngay_huy
+        V-->>U: Đã hủy, hàng hoàn về lô
+    else Đã hủy hoặc có lô đã chốt
+        V-->>U: Báo không hủy được
+    end
